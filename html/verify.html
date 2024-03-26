@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CMS - ACME FILMES</title>
+</head>
+<body class="w-screen h-screen bg-slate-300">
+    <header class="w-full h-40 bg-[#176596] flex flex-row justify-between px-10 place-items-center">
+        <img src="../img/cms-logo.png" alt="">
+        <h1 class="text-white text-3xl">Visualizar</h1>
+    </header>
+    <main class="w-full h-4/6 flex flex-col justify-between">
+        <div class="w-full h-14 pl-12 pt-5">
+            <button>
+                <img src="../img/voltar.svg" alt="">
+            </button>
+        </div>
+        <div class="container h-full mx-auto flex flex-col justify-center">
+            <div class="w-10/12 h-11/12 mx-auto rounded-md  overflow-hidden">
+                <div class="w-full h-full grid grid-cols-3 gap-6 p-6">
+                    <div class="col-span-1 bg-cyan-600 h-[70px] w-[340px]">
+                    <input type="text" id="title" name="tile" placeholder="Título" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                    </div>
+                    <div class="col-span-1 bg-cyan-600 h-[70px] w-[340px]">
+                        <input type="text" id="category" name="category" placeholder="Categoria" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                    </div>
+                    <div class="col-span-1 bg-cyan-600 h-[70px] w-[340px]">
+                        <input type="number" id="price" name="price" placeholder="Preço" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                    </div>
+                    <div class="col-span-1 bg-cyan-600 h-[70px] w-[340px]">
+                        <input type="date" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" class=" h-full enabled:outline-none w-full text-2xl text-gray-400 rounded-xl bg-[#176596]">
+                    </div> 
+                    <div class="col-span-1 bg-cyan-600 h-[70px] w-[340px]">
+                        <input type="date" id="data_relancamento" name="data_relancamento" placeholder="Data de Relançamento" class=" h-full enabled:outline-none w-full text-2xl text-gray-400 rounded-xl bg-[#176596]">
+                    </div>
+                    <div class="col-span-1 bg-cyan-600 h-[70px] w-[340px]">
+                        <input type="text" id="id" name="id" placeholder="ID" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                    </div> 
+                    <div class="col-span-1 bg-cyan-600 h-[150px] w-[340px]">
+                        <input type="text" id="sinopse" name="sinopse" placeholder="Sinopse" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-3xl bg-[#176596]">
+                    </div>
+                    <div class="col-span-1  h-[200px] w-[340px] flex flex-col justify-evenly">
+                        <div class="w-full h-2/6 rounded-xl bg-[#176596] flex flex-row place-items-center justify-between px-8">
+                            <span class="text-2xl text-gray-400">Destaque</span>
+                            <input class="w-2/12 h-2/5 rounded-full" type="checkbox">
+                        </div>
+                        <input type="text" id="code" name="code" placeholder="Código" class=" h-2/6 enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                    </div> 
+                    <div class="col-span-1 h-[200px] w-[340px] flex flex-col justify-evenly">
+                        <input type="image" id="image" name="image" class=" h-2/6 enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                        <input type="datetime" id="duration" name="duration" placeholder="Duração" class=" h-2/6 enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                    </div> 
+                </div> 
+            </div>   
+    </main>
+    <footer></footer>
+</body>
+</html>
