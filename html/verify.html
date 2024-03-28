@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../js/verify.js" defer></script>
+    <link rel="stylesheet" href="../css/global.css">
     <title>CMS - ACME FILMES</title>
 </head>
-<body class="w-screen h-screen bg-slate-300">
+<body class="w-screen h-screen bg-slate-300 overflow-auto no-scrollbar">
     <header class="w-full h-40 bg-[#176596] flex flex-row justify-between px-10 place-items-center">
         <img src="../img/cms-logo.png" alt="logo Acme Filmes CMS">
         <h1 class="text-white text-3xl">Visualizar</h1>
@@ -61,7 +63,7 @@
                     </div> 
                     <div class="col-span-1 h-[250px] w-[340px] flex flex-col justify-evenly">                 
                         <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
+                            <label for="capa-dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_capa">
                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -69,11 +71,11 @@
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Foto Capa - Click to upload</span> or drag and drop</p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
                             </div>
-                            <input id="dropzone-file" type="file" class="hidden" />
+                            <input id="capa-dropzone-file" type="file" class="hidden"/>
                             </label>
                         </div> 
                         <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
+                            <label for="bg-dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_fundo">
                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -81,7 +83,7 @@
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Background Foto - Click to upload</span> or drag and drop</p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
                             </div>
-                            <input id="dropzone-file" type="file" class="hidden" />
+                            <input id="bg-dropzone-file" type="file" class="hidden" />
                             </label>
                         </div> 
                     </div> 
@@ -90,11 +92,11 @@
     </main>
     <footer class="h-1/6 w-full flex justify-start">
         <div class="w-2/5 h-2/4 flex flex-row justify-end  gap-20">
-            <button class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-red-500 text-2xl text-gray-300" id="deletar_filme">
+            <button class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-red-500 text-2xl text-gray-300 hover:bg-red-600" id="deletar_filme">
                 <img src="../img/delete-button.png" alt="botão de deletar">
                 Excluir
             </button>
-            <button class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-[#176596] text-2xl text-gray-300" id="editar_filme">
+            <button class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-[#176596] text-2xl text-gray-300 hover:bg-blue-800" id="editar_filme">
                 <img src="../img/edit-button.png" alt="botão de confirmar edição">
                 Editar
             </button>

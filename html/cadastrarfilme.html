@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/global.css">
     <title>CMS - ACME FILMES</title>
 </head>
-<body class="w-screen h-screen bg-slate-300">
+<body class="w-screen h-screen bg-slate-300 overflow-auto no-scrollbar">
     <header class="w-full h-40 bg-[#176596] flex flex-row justify-between px-10 place-items-center">
         <img src="../img/cms-logo.png" alt="logo Acme Filmes CMS">
         <h1 class="text-white text-3xl">Cadastrar</h1>
     </header>
-    <main class="w-full h-4/6 flex flex-col justify-between">
+    <main class="w-full h-4/6 flex flex-col justify-between ">
         <div class="w-full h-32 pl-12 pt-6">
             <a href="./index.html">
                 <img src="../img/voltar.svg" alt="seta voltar">
             </a>
         </div>
-        <div class="container h-full mx-auto flex flex-col justify-center">
+        <div class="container h-full mx-auto flex flex-col justify-center ">
             <div class="w-10/12 h-full mx-auto rounded-md">
                 <div class="w-full h-full grid grid-cols-3 gap-6 p-6">
                     <div class="col-span-1 h-[70px] w-[340px]">
@@ -59,7 +60,7 @@
                         </div>
                         <input type="text" id="code" name="code" placeholder="Código" class=" h-2/6 enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
                     </div> 
-                    <div class="col-span-1 h-[250px] w-[340px] flex flex-col justify-evenly">                 
+                    <div class="col-span-1 h-[280px] w-[340px] flex flex-col justify-evenly">                 
                         <div class="flex items-center justify-center w-full">
                             <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-36 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_capa">
@@ -72,23 +73,23 @@
                             <input id="dropzone-file" type="file" class="hidden" />
                             </label>
                         </div> 
-                    </div> 
-                    <div class="flex items-center justify-center w-full">
-                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_fundo">
-                            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                            </svg>
-                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Background Foto - Click to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
-                        </div>
-                        <input id="dropzone-file" type="file" class="hidden" />
-                        </label>
+                        <div class="flex items-center justify-center w-full">
+                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_fundo">
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Background Foto - Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
+                            </div>
+                            <input id="dropzone-file" type="file" class="hidden" />
+                            </label>
+                        </div> 
                     </div> 
                 </div> 
             </div>   
     </main>
-    <footer class="h-1/6 w-full flex justify-start">
+    <footer class="h-1/6 w-full flex justify-start place-items-center">
         <div class="w-2/6 h-2/4 flex flex-row justify-end pr-16">
             <button class="w-2/6 h-full flex flex-row justify-evenly place-items-center rounded-full bg-cyan-600 text-2xl text-gray-300" id="cadastrar_filme">
                 <img src="../img/plus.svg" alt="botão de deletar">

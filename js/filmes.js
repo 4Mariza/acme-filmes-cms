@@ -57,6 +57,5 @@ export async function getFilmebyTitle(title){
     const response = await fetch(url)
     console.log('askjaksjajdjljdlkfjslkdjfljflkjskldfjkldsfjlkdsjfsdjflçjdçfasdjçflfjd');
     const data = await response.json()
-    console.log(data.filme[0]);
     return data.filme[0]
 }
