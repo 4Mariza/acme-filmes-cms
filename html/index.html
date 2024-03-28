@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../js/main.js" defer></script>
     <title>CMS - ACME FILMES</title>
 </head>
 <body class="w-screen h-screen">
@@ -30,12 +31,11 @@
             </div>
         </div>
         <div class="w-full h-5/6 flex flex-row justify-center place-items-center">
-            <div class="h-full w-4/6 bg-[#25495B] rounded-2xl divide-y overflow-hidden overflow-y-auto">
+            <div class="h-full w-4/6 bg-[#25495B] rounded-2xl divide-y overflow-hidden overflow-y-auto"  id="dashboard">
                 <div class="flex flex-row  w-full h-16 rounded-t-lg justify-between">
                     <div class="flex flex-row  w-4/12">
                         <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-evenly">
                             <li>ID</li>
-                            <li>Código</li>
                             <li>Título</li>
                         </ul>
                     </div>
@@ -47,7 +47,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="flex flex-row  w-full h-16 rounded-t-lg justify-between">
+                <!-- <div class="flex flex-row w-full h-16 rounded-t-lg justify-between">
                     <div class="flex flex-row w-4/12 place-items-center">
                         <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-evenly">
                             <li>ID</li>
@@ -55,31 +55,31 @@
                             <li>Título</li>
                         </ul>
                     </div>
-                    <div class="flex flex-row  w-5/12">
+                  <div class="flex flex-row  w-5/12">
                         <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-between pr-12">
                             <li>Destaque</li>
                             <li>Preço</li>
                             <div class="flex flex-row w-28 justify-between">
                                 <button>
                                     <a href="./verify.html">
-                                        <img src="../img/edit.svg" alt="">
+                                        <img src="../img/edit.svg" alt="botão de editar">
                                     </a>
                                 </button>
                                 <button>
                                     <a href="./verify.html">
-                                        <img src="../img/verify.svg" alt="">
+                                        <img src="../img/verify.svg" alt="botão de verificar informações">
                                     </a>
                                 </button>
                                 <button>
                                     <a href="./delete.html">
-                                        <img src="../img/delete.svg" alt="">
+                                        <img src="../img/delete.svg" alt="botão de deletar">
                                     </a>
                                 </button>
                             </div>
                         </ul>
-                    </div>
-                </div>
-                <div class="flex flex-row  w-full h-16 rounded-t-lg justify-between place-items-center">
+                    </div>  
+                </div> -->
+                <!-- <div class="flex flex-row  w-full h-16 rounded-t-lg justify-between place-items-center">
                     <div class="flex flex-row w-4/12">
                         <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-evenly">
                             <li>ID</li>
@@ -104,7 +104,7 @@
                             </div>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
