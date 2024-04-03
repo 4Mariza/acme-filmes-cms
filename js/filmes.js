@@ -29,7 +29,8 @@ export async function postFilme(filme){
 }
 
 export async function putFilme(filme){
-    const url = `http://localhost:8080/v2/acmeFilmes/editeFilme/${filme.id}`
+    console.log(filme);
+    const url = `http://localhost:8080/v2/acmeFilmes/filme/${filme.id}`
     const options = {
         method: 'PUT',
         headers: {
@@ -43,7 +44,7 @@ export async function putFilme(filme){
 }
 
 export async function deleteFilme(id){
-    const url = `http://localhost:8080/v2/acmeFilmes/deleteFilme/${id}`
+    const url = `http://localhost:8080/v2/acmeFilmes/filme/${id}`
     const options = {
         method: 'DELETE',
     }
@@ -55,7 +56,6 @@ export async function deleteFilme(id){
 export async function getFilmebyTitle(title){
     const url = `http://localhost:8080/v1/acmeFilmes/filmes/filtro/${title}`
     const response = await fetch(url)
-    console.log('askjaksjajdjljdlkfjslkdjfljflkjskldfjkldsfjlkdsjfsdjflçjdçfasdjçflfjd');
     const data = await response.json()
     return data.filme[0]
 }

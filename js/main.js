@@ -3,12 +3,8 @@
 import {
     getFilmes,
     getFilme,
-    postFilme,
-    putFilme,
-    deleteFilme,
-    getFilmebyTitle,
+    getFilmebyTitle
 } from "./filmes.js";
-
 
 async function criarCard(filmes) {
 
@@ -57,6 +53,7 @@ async function criarCard(filmes) {
     buttonVerificar.id = "verificar_info";
 
     const linkVerificar = document.createElement("a");
+    linkVerificar.href = "./verify.html"
 
     const imgVerificar = document.createElement("img");
     imgVerificar.src = "../img/verify.svg";
@@ -66,6 +63,7 @@ async function criarCard(filmes) {
     buttonDeletar.id = "deletar_info";
 
     const linkDeletar = document.createElement("a");
+    linkDeletar.href = "./verify.html"
 
     const imgDeletar = document.createElement("img");
     imgDeletar.src = "../img/delete.svg";
@@ -95,20 +93,15 @@ async function criarCard(filmes) {
         localStorage.setItem('filme', JSON.stringify(filmes))
     })
 
-    // buttonVerificar.addEventListener('click', function (event) {
-    //     event.preventDefault()
-    //     window.location.href = "./verify.html"
-    //     showMoreInfo(filmes)
-    // })
+    buttonVerificar.addEventListener('click', function (event) {
+        localStorage.setItem('filme', JSON.stringify(filmes))
+    })
 
-    // buttonDeletar.addEventListener('click', function (event) {
-    //     event.preventDefault()
-    //     window.location.href = "./verify.html"
-    //     showMoreInfo(filmes)
-    // })
+    buttonDeletar.addEventListener('click', function (event) {
+        localStorage.setItem('filme', JSON.stringify(filmes))
+    })
 
-
-    return card;
+    return card
 }
 
 async function preencherContainer() {
