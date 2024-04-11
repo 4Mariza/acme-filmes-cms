@@ -26,17 +26,19 @@
                     <div class="col-span-1 h-[70px] w-[340px]">
                         <input type="text" id="title" name="tile" placeholder="Título" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
                     </div>
-                    <!-- <div class="col-span-1 h-[70px] w-[340px]">
+                    <div class="col-span-1 h-[70px] w-[340px]">
                         <form>
                             <select class= "h-[70px] enabled:outline-none w-full text-2xl text-gray-400 rounded-xl bg-[#176596]" name="plataforma" required="required">
-                                <option value="">Categoria</option>
+                                <option value="">Gênero</option>
                                 <option value="comedia">Comédia</option>
                                 <option value="suspense">Suspense</option>
                                 <option value="terror">Terror</option>
-                                <option value="romance  ">Romance</option>
+                                <option value="romance">Romance</option>
+                                <option value="ação">Ação</option>
+                                <option value="ação">Ficção Científica</option>
                             </select>
                         </form>
-                    </div> -->
+                    </div>
                     <div class="col-span-1 h-[70px] w-[340px]">
                         <input type="number" id="price" name="price" placeholder="Preço" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
                     </div>
@@ -47,14 +49,8 @@
                         <input type="date" id="data_relancamento" name="data_relancamento" placeholder="Data de Relançamento" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
                     </div>
                     <div class="col-span-1 h-[70px] w-[340px]">
-                        <input type="text" id="id" name="id" placeholder="ID" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
-                    </div> 
-                    <div class="col-span-1 h-[70px] w-[340px]">
                         <input type="datetime" id="duration" name="duration" placeholder="Duração" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">  
                     </div> 
-                    <div class="col-span-1  h-[180px] w-[340px]">
-                        <textarea class="h-full enabled:outline-none w-full resize-none text-2xl text-white rounded-3xl bg-[#176596] pl-6" name="sinopse" id="sinopse" cols="5" rows="8" placeholder="Sinopse"></textarea>
-                    </div>
                     <div class="col-span-1  h-[250px] w-[340px] flex flex-col justify-evenly">
                         <div class="w-full h-28 rounded-lg">
                             <img class="w-full h-full cursor-pointer rounded-lg" src="" alt="" id="foto-bg">
@@ -66,7 +62,7 @@
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Background Foto - Click to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">JPEG, PNG ou GIF</p>
                             </div>
                             <input id="bg-dropzone-file" type="file" class="hidden" />
                             </label>
@@ -89,6 +85,9 @@
                             </label>
                         </div>        
                     </div> 
+                    <div class="col-span-1  h-[200px] w-[340px]">
+                        <textarea class="h-full enabled:outline-none w-full resize-none text-2xl text-white rounded-3xl bg-[#176596] pl-6" name="sinopse" id="sinopse" cols="5" rows="8" placeholder="Sinopse"></textarea>
+                    </div>
                     <div class="col-span-1 w-[350px] h-[60px] rounded-xl bg-[#176596] flex flex-row place-items-center justify-between px-8">
                         <span class="text-2xl text-gray-400">Destaque</span>
                         <input class="w-2/12 h-3/5 rounded-full" type="checkbox">

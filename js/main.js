@@ -33,7 +33,7 @@ async function criarCard(filmes) {
     innerLi3.textContent = "Destaque";
 
     const innerLi4 = document.createElement("li");
-    innerLi4.textContent = filmes.valor_unitario;
+    innerLi4.textContent = filmes.valor_unitario.toFixed(2);
 
     const innerDiv3 = document.createElement("div");
     innerDiv3.classList.add("flex", "flex-row", "w-28", "justify-between");

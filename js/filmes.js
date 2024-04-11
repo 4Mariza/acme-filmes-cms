@@ -54,7 +54,7 @@ export async function deleteFilme(id){
 }
 
 export async function getFilmebyTitle(title){
-    const url = `http://localhost:8080/v1/acmeFilmes/filmes/filtro/${title}`
+    const url = `http://localhost:8080/v1/acmeFilmes/filmes/${title}`
     const response = await fetch(url)
     const data = await response.json()
     return data.filme[0]

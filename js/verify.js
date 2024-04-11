@@ -18,12 +18,13 @@ import {uploadImgur  } from "./imgur.js";
 
 function exibirInformacoes(filme) {
   titulo.value = filme.nome
-  preco.value = filme.valor_unitario
+  preco.value = filme.valor_unitario.toFixed(2)
   sinopse.textContent = filme.sinopse
   id.value = filme.id
   img.src = filme.foto_capa
   imgBackground.src = filme.foto_fundo
   duracao.value = moment.utc(filme.duracao).format("HH:mm:ss");
+
   //moment - biblioteca JavaScript muito popular para manipulação, formatação e análise de datas e horas em JavaScript
   data_lancamento.value = moment(filme.data_lancamento)
     .format("YYYY-MM-DD")
