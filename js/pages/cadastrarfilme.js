@@ -1,5 +1,5 @@
-import { postFilme } from "./filmes.js"
-import { uploadImgur } from "./imgur.js";
+import { postFilme } from "../filmes.js"
+import { uploadImgur } from "../imgur.js";
 
 const foto_capa = document.getElementById("capa-dropzone-file")
 const foto_fundo = document.getElementById("bg-dropzone-file")

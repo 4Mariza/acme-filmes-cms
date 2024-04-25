@@ -11,7 +11,7 @@ export async function getFilme(id){
     const response = await fetch(url)
     const data = await response.json()
 
-    return data.filme[0]
+    return data.filme
 }
 
 export async function postFilme(filme){
@@ -23,7 +23,7 @@ export async function postFilme(filme){
         },
         body: JSON.stringify(filme)
     }
-    const response = fetch(url, options)
+    const response = await fetch(url, options)
 
     return response.ok
 }
@@ -38,7 +38,7 @@ export async function putFilme(filme){
         },
         body: JSON.stringify(filme)
     }
-    const response = fetch(url, options)
+    const response = await fetch(url, options)
 
     return response.ok
 }

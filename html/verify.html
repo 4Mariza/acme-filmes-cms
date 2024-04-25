@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="../js/verify.js" defer></script>
+    <script type="module" src="../js/pages/verify.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link rel="stylesheet" href="../css/global.css">
     <title>CMS - ACME FILMES</title>
 </head>
+
 <body class="w-screen h-screen bg-slate-300 overflow-auto no-scrollbar">
     <header class="w-full h-40 bg-[#176596] flex flex-row justify-between px-10 place-items-center">
         <img src="../img/cms-logo.png" alt="logo Acme Filmes CMS">
@@ -24,89 +26,128 @@
             <div class="w-10/12 h-full mx-auto rounded-md">
                 <div class="w-full h-full grid grid-cols-3 gap-6 p-6">
                     <div class="col-span-1 h-[70px] w-[340px]">
-                        <input type="text" id="title" name="tile" placeholder="Título" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                        <input type="text" id="title" name="tile" placeholder="Título"
+                            class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596] pl-6">
                     </div>
+
                     <div class="col-span-1 h-[70px] w-[340px]">
-                        <form>
-                            <select class= "h-[70px] enabled:outline-none w-full text-2xl text-gray-400 rounded-xl bg-[#176596]" name="plataforma" required="required">
-                                <option value="">Gênero</option>
-                                <option value="comedia">Comédia</option>
-                                <option value="suspense">Suspense</option>
-                                <option value="terror">Terror</option>
-                                <option value="romance">Romance</option>
-                                <option value="ação">Ação</option>
-                                <option value="ação">Ficção Científica</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div class="col-span-1 h-[70px] w-[340px]">
-                        <input type="number" id="price" name="price" placeholder="Preço" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                        <input type="number" id="price" name="price" placeholder="Preço"
+                            class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596] pl-6">
                     </div>
                     <div class="col-span-1  h-[70px] w-[340px]">
-                        <input type="date" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
-                    </div> 
+                        <input type="date" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento"
+                            class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596] pl-6">
+                    </div>
                     <div class="col-span-1  h-[70px] w-[340px]">
-                        <input type="date" id="data_relancamento" name="data_relancamento" placeholder="Data de Relançamento" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">
+                        <input type="date" id="data_relancamento" name="data_relancamento"
+                            placeholder="Data de Relançamento"
+                            class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596] ">
                     </div>
                     <div class="col-span-1 h-[70px] w-[340px]">
-                        <input type="datetime" id="duration" name="duration" placeholder="Duração" class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596]">  
-                    </div> 
+                        <input type="datetime" id="duration" name="duration" placeholder="Duração"
+                            class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596] pl-6">
+                    </div>
+                    <div
+                        class="col-span-1 w-[350px] h-[60px] rounded-xl bg-[#176596] flex flex-row place-items-center justify-between px-8">
+                        <span class="text-2xl text-white">Destaque</span>
+                        <input class="w-2/12 h-3/5 rounded-full" type="checkbox" id="destaque">
+                    </div>
                     <div class="col-span-1  h-[250px] w-[340px] flex flex-col justify-evenly">
                         <div class="w-full h-28 rounded-lg">
                             <img class="w-full h-full cursor-pointer rounded-lg" src="" alt="" id="foto-bg">
-                        </div>       
+                        </div>
                         <div class="flex items-center justify-center w-full">
-                            <label for="bg-dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_fundo">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                </svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Background Foto - Click to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">JPEG, PNG ou GIF</p>
-                            </div>
-                            <input id="bg-dropzone-file" type="file" class="hidden" />
+                            <label for="bg-dropzone-file"
+                                class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_fundo">
+                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                    </svg>
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                            class="font-semibold">Background Foto - Click to upload</span> or drag and
+                                        drop</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">JPEG, PNG ou GIF</p>
+                                </div>
+                                <input id="bg-dropzone-file" type="file" class="hidden" />
                             </label>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                     <div class="col-span-1 h-[250px] w-[340px] flex flex-col justify-evenly">
                         <div class="w-full h-28 rounded-lg">
                             <img class="w-full h-full cursor-pointer rounded-lg" src="" alt="" id="foto">
-                        </div>       
+                        </div>
                         <div class="flex items-center justify-center w-full">
-                            <label for="capa-dropzone-file" class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_capa">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                </svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Foto Capa - Click to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
-                            </div>
-                            <input id="capa-dropzone-file" type="file" class="hidden"/>
+                            <label for="capa-dropzone-file"
+                                class="flex flex-col items-center justify-center w-full h-28 border-2 bg-[#176596] border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-blue-600">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6" id="img_capa">
+                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                    </svg>
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                            class="font-semibold">Foto Capa - Click to upload</span> or drag and drop
+                                    </p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, WEBP or JPG</p>
+                                </div>
+                                <input id="capa-dropzone-file" type="file" class="hidden" />
                             </label>
-                        </div>        
-                    </div> 
+                        </div>
+                    </div>
                     <div class="col-span-1  h-[200px] w-[340px]">
-                        <textarea class="h-full enabled:outline-none w-full resize-none text-2xl text-white rounded-3xl bg-[#176596] pl-6" name="sinopse" id="sinopse" cols="5" rows="8" placeholder="Sinopse"></textarea>
+                        <textarea
+                            class="h-full enabled:outline-none w-full resize-none text-2xl text-white rounded-3xl bg-[#176596] pl-6"
+                            name="sinopse" id="sinopse" cols="5" rows="8" placeholder="Sinopse"></textarea>
                     </div>
-                    <div class="col-span-1 w-[350px] h-[60px] rounded-xl bg-[#176596] flex flex-row place-items-center justify-between px-8">
-                        <span class="text-2xl text-gray-400">Destaque</span>
-                        <input class="w-2/12 h-3/5 rounded-full" type="checkbox">
+
+                    <div
+                        class="col-span-1 w-[350px] h-[60px] rounded-xl bg-[#176596] flex flex-row place-items-center justify-between px-8">
+                        <span class="text-2xl text-white">Classificação</span>
+                        <input class="w-2/12 h-3/5 rounded-md flex flex-row place-items-center text-2xl pl-2" type="number"
+                            id="classificacao">
                     </div>
-                </div> 
-            </div>   
+                    <div class="col-span-1 h-[70px] w-[340px]">
+                        <form>
+                            <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
+                                class="inline-flex w-[350px] h-[60px] items-center justify-between px-4 py-2 text-xl font-medium text-center text-white bg-[#176596] rounded-xl hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button">Gêneros<svg class="w-4.5 h-2.5 ms-2.5" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg></button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdownSearch"
+                                class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownSearchButton" id="ul-list">
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer class="h-1/6 w-full flex justify-start place-items-center">
         <div class="w-2/5 h-2/4 flex flex-row justify-end  gap-20">
-            <button class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-red-500 text-2xl text-gray-300 hover:bg-red-600" id="deletar_filme">
+            <button
+                class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-red-500 text-2xl text-gray-300 hover:bg-red-600"
+                id="deletar_filme">
                 <img src="../img/delete-button.png" alt="botão de deletar">
                 Excluir
             </button>
-            <button class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-[#176596] text-2xl text-gray-300 hover:bg-blue-800" id="editar_filme">
+            <button
+                class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-[#176596] text-2xl text-gray-300 hover:bg-blue-800"
+                id="editar_filme">
                 <img src="../img/edit-button.png" alt="botão de confirmar edição">
                 Editar
             </button>
         </div>
     </footer>
 </body>
+
 </html>

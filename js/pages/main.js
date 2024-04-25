@@ -4,7 +4,7 @@ import {
     getFilmes,
     getFilme,
     getFilmebyTitle
-} from "./filmes.js";
+} from "../filmes.js";
 
 async function criarCard(filmes) {
 
@@ -90,15 +90,15 @@ async function criarCard(filmes) {
     card.append(innerDiv1, innerDiv2);
     
     buttonEditar.addEventListener('click', function () {
-        localStorage.setItem('filme', JSON.stringify(filmes))
+        localStorage.setItem('filme', JSON.stringify(filmes.id))
     })
 
     buttonVerificar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(filmes))
+        localStorage.setItem('filme', JSON.stringify(filmes.id))
     })
 
     buttonDeletar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(filmes))
+        localStorage.setItem('filme', JSON.stringify(filmes.id))
     })
 
     return card
