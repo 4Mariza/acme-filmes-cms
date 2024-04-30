@@ -29,7 +29,7 @@ export async function postFilme(filme){
 }
 
 export async function putFilme(filme){
-    console.log(filme);
+    console.log(filme.id);
     const url = `http://localhost:8080/v2/acmeFilmes/filme/${filme.id}`
     const options = {
         method: 'PUT',
@@ -39,7 +39,7 @@ export async function putFilme(filme){
         body: JSON.stringify(filme)
     }
     const response = await fetch(url, options)
-
+console.log(response);
     return response.ok
 }
 

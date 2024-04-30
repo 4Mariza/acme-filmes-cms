@@ -1,3 +1,8 @@
+
+import { putFilme, deleteFilme, getFilme } from "../filmes.js"
+import { getGeneros } from "../../generos.js"
+import { uploadImgur } from "../imgur.js";
+
 const foto_capa = document.getElementById("capa-dropzone-file")
 const foto_fundo = document.getElementById("bg-dropzone-file")
 const editar = document.getElementById("editar_filme")
@@ -12,14 +17,24 @@ const sinopse = document.getElementById("sinopse")
 const destaque = document.getElementById("destaque")
 const imgBackground = document.getElementById("foto-bg")
 const classificacao = document.getElementById("classificacao")
-const lista_generos = document.getElementById("ul-list")
+const listaGeneros = document.getElementById("ul-list")
 
 let id = JSON.parse(localStorage.getItem("filme"));
 let filme = await getFilme(id);
 
-import { putFilme, deleteFilme, getFilme } from "../filmes.js"
-import { getGeneros } from "../../generos.js"
-import { uploadImgur } from "../imgur.js";
+const dropdownButton = document.getElementById('dropdownSearchButton');
+const dropdownMenu = document.getElementById('dropdownSearch');
+// Adiciona um evento de clique ao botão para alternar a visibilidade do dropdown
+dropdownButton.addEventListener('click', function () {
+  dropdownMenu.classList.toggle('hidden');
+});
+
+// Fecha o dropdown quando se clica fora dele
+document.addEventListener('click', function (event) {
+  if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+    dropdownMenu.classList.add('hidden');
+  }
+});
 
 async function exibirInformacoes() {
   try {
@@ -69,7 +84,7 @@ async function exibirInformacoes() {
       li.appendChild(divGenero);
 
       // Adicionar o li à lista de gêneros
-      lista_generos.appendChild(li);
+      listaGeneros.appendChild(li);
     });
 
     //moment - biblioteca JavaScript para manipulação, formatação e análise de datas e horas em JavaScript
@@ -92,28 +107,49 @@ async function exibirInformacoes() {
   }
 }
 
-const dropdownButton = document.getElementById('dropdownSearchButton');
-const dropdownMenu = document.getElementById('dropdownSearch');
-// Adiciona um evento de clique ao botão para alternar a visibilidade do dropdown
-dropdownButton.addEventListener('click', function () {
-  dropdownMenu.classList.toggle('hidden');
-});
+const elencoBotao = document.getElementById('ator-diretor')
+const formularioAdicionar = document.getElementById("formularioAdicionar");
 
-// Fecha o dropdown quando se clica fora dele
-document.addEventListener('click', function (event) {
-  if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-    dropdownMenu.classList.add('hidden');
-  }
-});
+elencoBotao.addEventListener('click', ()=>{
+  formularioAdicionar.classList.remove("hidden")
+  formularioAdicionar.classList.add("block")
+})
+
+const adicionarAtorBtn = document.getElementById("adicionarAtor");
+const adicionarDiretorBtn = document.getElementById("adicionarDiretor");
+
+adicionarAtorBtn.addEventListener("click", adicionarCampoAtor);
+adicionarDiretorBtn.addEventListener("click", adicionarCampoDiretor);
+
+function adicionarCampoAtor() {
+  const atoresContainer = document.getElementById("atoresContainer");
+  const novoCampoAtor = document.createElement("div");
+  novoCampoAtor.classList.add("flex", "flex-row", "w-full", "h-3/5", "justify-evenly")
+  novoCampoAtor.innerHTML = `
+  <input type="text" class="nomeAtor p-2 border border-gray-300 rounded-md h-full" placeholder="Nome" required>
+  <input type="text" class="personagemAtor p-2 border border-gray-300 rounded-md h-full" placeholder="Personagem" required>
+  `;
+  atoresContainer.appendChild(novoCampoAtor);
+}
+
+function adicionarCampoDiretor() {
+  const diretoresContainer = document.getElementById("diretoresContainer");
+  const novoCampoDiretor = document.createElement("div");
+  novoCampoDiretor.classList.add("flex", "flex-row", "w-full", "h-3/5", "justify-evenly")
+  novoCampoDiretor.innerHTML = `
+  <input type="text" class="nomeDiretor p-2 border border-gray-300 rounded-md h-full" placeholder="Nome" required>
+  <input type="text" class="contribuicaoDiretor p-2 border border-gray-300 rounded-md h-full" placeholder="Atribuição" required>
+  `;
+  diretoresContainer.appendChild(novoCampoDiretor);
+}
+
 exibirInformacoes()
 
 let fileImg
 let fileImgBackground
 
 editar.addEventListener("click", async () => {
-  let id = JSON.parse(localStorage.getItem("filme"))
   let filme = await getFilme(id)
-
   let urlImg = filme.foto_capa;
   let urlImgBackground = filme.foto_fundo;
 
@@ -162,7 +198,6 @@ editar.addEventListener("click", async () => {
       reader.readAsDataURL(file)
     }
   })
-
 
   const tituloAlterado = titulo.value
   const precoAlterado = preco.value
