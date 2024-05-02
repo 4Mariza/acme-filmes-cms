@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="../js/pages/verify.js" defer></script>
+    <script type="module" src="../js/pages/filmes/verify.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link rel="stylesheet" href="../css/global.css">
     <title>CMS - ACME FILMES</title>
@@ -154,29 +154,22 @@
             </button>
         </div>
         <div id="formularioAdicionar" class="w-2/5 h-3/5 flex flex-col hidden overflow-y-auto place-items-center justify-evenly bg-[#176596] rounded-2xl absolute top-52 right-1/3">
-            <h3 class="text-white text-3xl">Adicionar Ator</h3>
+            <h3 class="text-white text-3xl">Atores</h3>
             <form id="formAtores" class="w-2/3 h-1/4 flex flex-col justify-evenly place-items-center">
                 <div id="atoresContainer"  class="w-full h-full flex flex-col justify-evenly place-items-center">
-                    <div class=" flex flex-row w-full h-3/5 justify-evenly">
-                      <input type="text" class="nomeAtor p-2 border border-gray-300 rounded-md h-full" placeholder="Nome" required>
-                      <input type="text" class="personagemAtor p-2 border border-gray-300 rounded-md h-full" placeholder="Personagem" required>
-                    </div>
                 </div>
-              <button type="button" id="adicionarAtor" class="mt-2 h-3/5 w-4/5 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Adicionar Mais Ator(es)</button>
+              <button type="button" id="adicionarAtor" class="mt-2 h-3/5 w-4/5 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-green-600">Adicionar Mais Ator(es)</button>
             </form>
-            <h3 class="text-white text-3xl">Adicionar Diretor</h3>
+            <h3 class="text-white text-3xl">Diretores</h3>
             <form id="formDiretores" class="w-2/3 h-1/4 flex flex-col justify-evenly place-items-center">
                 <div id="diretoresContainer" class="w-full h-full flex flex-col justify-evenly place-items-center">
-                    <div class="flex flex-row w-full h-3/5 justify-evenly">
-                      <input type="text" class="nomeDiretor p-2 border border-gray-300 rounded-md h-full" placeholder="Nome" required>
-                      <input type="text" class="contribuicaoDiretor p-2 border border-gray-300 rounded-md h-full" placeholder="Atribuição" required>
-                    </div>
                 </div>
               <button type="button" id="adicionarDiretor" class="mt-2 h-3/5 w-4/5 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Adicionar Mais Diretor(es)</button>
+                <button type="button" id="atualizarElenco" class="mt-2 h-3/5 w-4/5 px-4 py-2 bg-green-500 text-white font-medium rounded-md hover:bg-green-600">ATUALIZAR ELENCO</button>
             </form>
           <ul id="listaAtores"></ul>
           <ul id="listaDiretores"></ul>
-
+        </div>
     </footer>
 </body>
 

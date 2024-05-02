@@ -4,9 +4,11 @@ import {
     getFilmes,
     getFilme,
     getFilmebyTitle
-} from "../filmes.js";
+} from "../../filmes.js";
 
 async function criarCard(filmes) {
+    console.log(filmes.id);
+    let idFilme = filmes.id
 
     const card = document.createElement("div");
     card.classList.add("flex", "flex-row", "w-full", "h-16", "rounded-t-lg", "justify-between", "card");
@@ -18,7 +20,7 @@ async function criarCard(filmes) {
     innerUl1.classList.add("flex", "flex-row", "w-full", "text-white", "text-2xl", "place-items-center", "truncate", "justify-evenly");
 
     const innerLi1 = document.createElement("li");
-    innerLi1.textContent = filmes.id;
+    innerLi1.textContent = idFilme;
 
     const innerLi2 = document.createElement("li");
     innerLi2.textContent = filmes.nome;
@@ -89,16 +91,16 @@ async function criarCard(filmes) {
     innerDiv1.appendChild(innerUl1);
     card.append(innerDiv1, innerDiv2);
     
-    buttonEditar.addEventListener('click', function () {
-        localStorage.setItem('filme', JSON.stringify(filmes.id))
+    buttonEditar.addEventListener('click', function (event) {
+        localStorage.setItem('filme', JSON.stringify(idFilme))
     })
 
     buttonVerificar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(filmes.id))
+        localStorage.setItem('filme', JSON.stringify(idFilme))
     })
 
     buttonDeletar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(filmes.id))
+        localStorage.setItem('filme', JSON.stringify(idFilme))
     })
 
     return card
@@ -116,14 +118,6 @@ async function preencherContainer() {
 }
 preencherContainer()
 
-async function showMovie(filme) {
-    const dashboard = document.getElementById('dashboard');
-
-    const card = await criarCard(filme)
-
-    dashboard.replaceChildren(card)
-}
-
 const input = document.getElementById('busca')
 input.addEventListener('keypress', (event) => verifyKeyPress(event))
 
@@ -137,7 +131,6 @@ function verifyKeyPress(event) {
     }
 }
 
-
 async function buscaFilme(titulo) {
 
     const filmeNome = titulo
@@ -146,3 +139,13 @@ async function buscaFilme(titulo) {
 
     showMovie(filme)
 }
+
+async function showMovie(filme) {
+    const dashboard = document.getElementById('dashboard');
+
+    const card = await criarCard(filme)
+
+    dashboard.replaceChildren(card)
+}
+
+
