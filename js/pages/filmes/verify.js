@@ -49,7 +49,7 @@ async function exibirInformacoes() {
     exibirAtores()
     exibirDiretores()
   } catch (error) {
-    return("Erro ao exibir informações:", error);
+    return ("Erro ao exibir informações:", error);
   }
 }
 
@@ -66,7 +66,7 @@ elencoBotao.addEventListener("click", () => {
   }
 });
 
-async function exibirdetalhesFilme(filme){
+async function exibirdetalhesFilme(filme) {
   try {
 
     titulo.value = filme.nome;
@@ -76,6 +76,7 @@ async function exibirdetalhesFilme(filme){
     imgBackground.src = filme.foto_fundo;
     duracao.value = moment.utc(filme.duracao).format("HH:mm:ss");
     classificacao.value = filme.classificacao[0].faixa_etaria;
+    localStorage.setItem('classificacao_id', JSON.stringify(filme.classificacao[0].id))
 
     //moment - biblioteca JavaScript para manipulação, formatação e análise de datas e horas em JavaScript
     data_lancamento.value = moment(filme.data_lancamento).format("YYYY-MM-DD");
@@ -99,7 +100,7 @@ async function exibirdetalhesFilme(filme){
   }
 }
 
-async function exibirGeneros(){
+async function exibirGeneros() {
   try {
     let generos = await getGeneros();
     const listaGeneros = document.getElementById("ul-list");
@@ -109,12 +110,12 @@ async function exibirGeneros(){
       const generoId = checkbox.id;
 
       if (checkbox.type === 'checkbox' && checkbox.checked) {
-        
+
         checkedGeneros.push(generoId.split('-')[0])
         console.log('id do gênero selecionado:', checkedGeneros);
         localStorage.setItem('generos', JSON.stringify(checkedGeneros))
       } else {
-        
+
         const index = checkedGeneros.indexOf(generoId.split('-')[0])
         checkedGeneros.splice(index, 1)
         console.log('id do gênero desmarcado:', checkedGeneros);
@@ -138,13 +139,15 @@ async function exibirGeneros(){
 
       // Criar o elemento input (checkbox)
       const inputGenero = document.createElement("input");
-      inputGenero.id = `${element.id}-${element.nome}`;
+      inputGenero.id = `${element.id}`;
       inputGenero.type = "checkbox";
       inputGenero.value = "";
 
       // Verificar se o gênero está presente nos gêneros do filme
       if (filme.genero.some((genre) => genre.nome === element.nome)) {
         inputGenero.checked = true;
+        checkedGeneros.push(Number(inputGenero.id))
+        localStorage.setItem('generos', JSON.stringify(checkedGeneros))
       }
 
       inputGenero.classList.add(
@@ -183,7 +186,7 @@ async function exibirGeneros(){
 
       // Adicionar a div dentro do li
       li.appendChild(divGenero);
-
+      
       // Adicionar o li à lista de gêneros
       listaGeneros.appendChild(li);
     });
@@ -196,9 +199,9 @@ let dadosAtores = await filmeAtor(id);
 let atores = dadosAtores.atores;
 let todosAtores = await getAtores();
 
-async function exibirAtores(){
+async function exibirAtores() {
   try {
-  
+
     atores.forEach((ator) => {
       if (todosAtores.atores.some((actor) => actor.id === ator.id)) {
         // Criar div
@@ -223,21 +226,22 @@ async function exibirAtores(){
           "rounded-md",
           "h-full"
         );
-    
+
         inputNomeAtor.value = ator.id;
         inputNomeAtor.textContent = ator.nome
 
         selectAtor.appendChild(inputNomeAtor);
-
+        let atores = []
+        
         todosAtores.atores.forEach((actor) => {
           if (actor.id === ator.id) return
           const option = document.createElement("option");
           option.value = actor.id;
           option.textContent = actor.nome;
+          atores.push(option.value)
           selectAtor.appendChild(option);
         });
         div.appendChild(selectAtor)
-
         
         // Criar input para o personagem do ator
         const inputPersonagemAtor = document.createElement("input");
@@ -249,19 +253,21 @@ async function exibirAtores(){
           "border-gray-300",
           "rounded-md",
           "h-full"
-        );
-        inputPersonagemAtor.placeholder = "Personagem";
-        inputPersonagemAtor.required = true;
-        inputPersonagemAtor.value = ator.personagem;
-
-        // Adicionar inputs à div
-        //div.appendChild(inputNomeAtor);
-        div.appendChild(inputPersonagemAtor);
-
-        // Adicionar div ao elemento pai
-        atoresContainer.appendChild(div);
-      }
-    });
+          );
+          inputPersonagemAtor.placeholder = "Personagem";
+          inputPersonagemAtor.required = true;
+          inputPersonagemAtor.value = ator.personagem;
+          
+          // Adicionar inputs à div
+          //div.appendChild(inputNomeAtor);
+          div.appendChild(inputPersonagemAtor);
+          
+          // Adicionar div ao elemento pai
+          atoresContainer.appendChild(div);
+        }
+      });
+      
+      localStorage.setItem('atores', JSON.stringify(atores))
   } catch (error) {
     return error
   }
@@ -270,12 +276,12 @@ async function exibirAtores(){
 async function exibirDiretores() {
   try {
     let todosDiretores = await getDiretores();
- 
+
     let dadosDiretores = await filmeDiretores(id);
     let diretores = dadosDiretores.diretores;
-    
+
     diretores.forEach((diretor) => {
-      
+
       if (
         todosDiretores.diretores.some((director) => director.id == diretor.id)
       ) {
@@ -294,18 +300,20 @@ async function exibirDiretores() {
           "rounded-md",
           "h-full"
         );
-       
+
         inputNomeDiretor.value = diretor.id;
         inputNomeDiretor.textContent = diretor.nome
 
         selectDiretor.appendChild(inputNomeDiretor);
+        let diretores = []
 
         todosDiretores.diretores.forEach((director) => {
-       
+
           if (director.id === diretor.id) return
           const option = document.createElement("option");
           option.value = director.id;
           option.textContent = director.nome;
+          diretores.push(option.value)
           selectDiretor.appendChild(option);
         });
         div.appendChild(selectDiretor)
@@ -320,11 +328,12 @@ async function exibirDiretores() {
 
         // // Adicionar inputs à div
         div.appendChild(inputContribuicaoDiretor);
-        
+
         // // Adicionar div ao elemento pai
         diretoresContainer.appendChild(div);
       }
     });
+    localStorage.setItem('diretores', JSON.stringify(diretores))
   } catch (error) {
     return error
   }
@@ -341,6 +350,8 @@ function adicionarCampoAtor() {
     "h-3/5",
     "justify-evenly"
   );
+
+  
   const selectAtor = document.createElement("select");
   todosAtores.atores.forEach(actor => {
     const option = document.createElement("option");
@@ -348,6 +359,8 @@ function adicionarCampoAtor() {
     option.textContent = actor.nome;
     selectAtor.appendChild(option);
   })
+  
+  
   const personagemAtor = document.createElement("input");
   personagemAtor.classList.add("personagemAtor", "p-2", "border", "border-gray-300", "rounded-md", "h-full")
   personagemAtor.placeholder = "Personagem"
@@ -355,6 +368,15 @@ function adicionarCampoAtor() {
   novoCampoAtor.appendChild(personagemAtor)
   atoresContainer.appendChild(novoCampoAtor);
   
+  let atores = JSON.parse(localStorage.getItem('atores'))
+  selectAtor.addEventListener('change', function () { 
+    let jsonAtor = {}
+    jsonAtor.personagem = personagemAtor.value
+    jsonAtor.id = selectAtor.value
+    atores.push(jsonAtor)
+    localStorage.setItem('atores',JSON.stringify(atores))
+  })
+ 
 }
 
 const adicionarDiretorBtn = document.getElementById("adicionarDiretor");
@@ -379,56 +401,68 @@ async function adicionarCampoDiretor() {
     selectDiretor.appendChild(option);
   })
 
-  const personagemDiretor = document.createElement("input");
-  personagemDiretor.classList.add("personagemAtor", "p-2", "border", "border-gray-300", "rounded-md", "h-full")
-  personagemDiretor.placeholder = "Personagem"
+  const atribuicaoDiretor = document.createElement("input");
+  atribuicaoDiretor.classList.add("atribuicaoDiretor", "p-2", "border", "border-gray-300", "rounded-md", "h-full")
+  atribuicaoDiretor.placeholder = "Atribuição"
   novoCampoDiretor.appendChild(selectDiretor)
-  novoCampoDiretor.appendChild(personagemDiretor)
+  novoCampoDiretor.appendChild(atribuicaoDiretor)
   diretoresContainer.appendChild(novoCampoDiretor);
+
+  let diretores = JSON.parse(localStorage.getItem('diretores'))
+  let jsonDiretor = {}
+  selectDiretor.addEventListener('change', function () {
+    jsonDiretor.tipo_direcao = atribuicaoDiretor.value
+    jsonDiretor.id = selectDiretor.value
+    diretores.push(jsonDiretor)
+    localStorage.setItem('diretores',JSON.stringify(diretores))
+  })
+
 }
 
 const atualizarElencoBtn = document.getElementById('atualizarElenco')
-atualizarElencoBtn.addEventListener('click', () =>{
-  localStorage.setItem('atores', JSON.stringify())
-} )
+atualizarElencoBtn.addEventListener('click', () => {
+  formularioAdicionar.classList.remove("block");
+  formularioAdicionar.classList.add("hidden");
+
+})
 exibirInformacoes();
 
 let fileImg
-    fileImg = foto_capa.files[0];
-    
-    let foto
-    let file = foto_capa.files[0];
-    
-    if (file) {
-      const reader = new FileReader();
-      
-      reader.addEventListener("load", (e) => {
-        const render = e.target;
-        const img = document.getElementById("foto");
-        foto = render.result;
-        img.src = foto;
-      });
-      reader.readAsDataURL(file);
-    }
+fileImg = foto_capa.files[0];
 
-    let fileImgBackground;
-    
-    fileImgBackground = foto_fundo.files[0];
-    
-    let fotoBg;
-    let fileBg = foto_fundo.files[0];
-    
-    if (fileBg) {
-      const reader = new FileReader();
-      
-      reader.addEventListener("load", (e) => {
-        const render = e.target;
-        const img = document.getElementById("foto-bg");
-        foto = render.result;
-        img.src = fotoBg;
-      });
-      reader.readAsDataURL(file);
-    }
+let foto
+let file = foto_capa.files[0];
+
+if (file) {
+  const reader = new FileReader();
+
+  reader.addEventListener("load", (e) => {
+    const render = e.target;
+    const img = document.getElementById("foto");
+    foto = render.result;
+    img.src = foto;
+  });
+  reader.readAsDataURL(file);
+}
+
+let fileImgBackground;
+
+fileImgBackground = foto_fundo.files[0];
+
+let fotoBg;
+let fileBg = foto_fundo.files[0];
+
+if (fileBg) {
+  const reader = new FileReader();
+
+  reader.addEventListener("load", (e) => {
+    const render = e.target;
+    const img = document.getElementById("foto-bg");
+    foto = render.result;
+    img.src = fotoBg;
+  });
+  reader.readAsDataURL(file);
+}
 
 
 deletar.addEventListener("click", async () => {

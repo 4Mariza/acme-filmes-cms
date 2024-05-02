@@ -6,8 +6,12 @@ import {
     getFilmebyTitle
 } from "../../filmes.js";
 
+const greeting = document.getElementById('username')
+let username = JSON.parse(localStorage.getItem('user'))
+greeting.textContent = username
+
 async function criarCard(filmes) {
-    console.log(filmes.id);
+    
     let idFilme = filmes.id
 
     const card = document.createElement("div");

@@ -1,4 +1,4 @@
-import { putFilme,getFilme } from "../../filmes";
+import { putFilme, getFilme } from "../../filmes.js";
 import { uploadImgur } from "../../imgur.js";
 
 const foto_capa = document.getElementById("capa-dropzone-file");
@@ -11,12 +11,9 @@ const data_relancamento = document.getElementById("data_relancamento");
 const duracao = document.getElementById("duration");
 const sinopse = document.getElementById("sinopse");
 const destaque = document.getElementById("destaque");
-const classificacao = document.getElementById("classificacao");
 
 
 let id = JSON.parse(localStorage.getItem("filme"));
-const filme = await getFilme(id);
-
 
 editar.addEventListener("click", async () => {
   let filme = await getFilme(id);
@@ -81,12 +78,36 @@ editar.addEventListener("click", async () => {
   const lancamentoAlterado = moment(data_lancamento.value).format("YYYY-MM-DD");
   const destaqueAlterado = destaque.checked;
   const generos = JSON.parse(localStorage.getItem('generos'))
-  const classificacaoAlterada = classificacao.value;
+  const classificacaoAlterada = JSON.parse(localStorage.getItem('classificacao_id'))
   const relancamentoAlterado =
     //expressão condicional - usada para atribuir um valor a uma variável com base em uma condição.
     filme.data_relancamento === null
       ? null
       : moment(data_relancamento.value).format("YYYY-MM-DD");
+
+
+  let atores = JSON.parse(localStorage.getItem('atores'))
+
+  let arrayAtores = []
+  atores.forEach(element => {
+    let json = {}
+    json.id = Number(element.id)
+    json.personagem = element.personagem
+    arrayAtores.push(json)
+  });
+
+
+  let diretores = JSON.parse(localStorage.getItem('diretores'))
+
+  let arrayDiretores = []
+
+  diretores.forEach(element => {
+    let json = {}
+    json.id = Number(element.id)
+    json.tipo_direcao = element.tipo_direcao
+    arrayDiretores.push(json)
+  });
+
 
   const filmeAlterado = {
     id: id,
@@ -101,11 +122,14 @@ editar.addEventListener("click", async () => {
     destaque: destaqueAlterado,
     id_classificacao: parseInt(classificacaoAlterada),
     id_genero: generos,
-  };
+    atores: arrayAtores,
+    diretores:arrayDiretores
+  }
 
   let isEdited = await putFilme(filmeAlterado);
 
   if (isEdited) {
+    localStorage.clear()
     alert("Filme editado com sucesso!");
   }
 });
