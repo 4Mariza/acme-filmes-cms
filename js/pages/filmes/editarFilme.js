@@ -129,7 +129,9 @@ editar.addEventListener("click", async () => {
   let isEdited = await putFilme(filmeAlterado);
 
   if (isEdited) {
-    localStorage.clear()
+    localStorage.removeItem('atores')
+    localStorage.removeItem('diretores')
+    localStorage.removeItem('generos')
     alert("Filme editado com sucesso!");
   }
 });

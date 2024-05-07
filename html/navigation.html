@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="../js/pages/filmes/main.js" defer></script>
+    <script type="module" src="../js/pages/filmes/navigation.js" defer></script>
     <link rel="stylesheet" href="../css/global.css">
     <title>CMS - ACME FILMES</title>
 </head>
@@ -15,7 +15,7 @@
         <h1 class="text-white text-3xl">Dashboard</h1>
     </header>
     <main class="w-full h-5/6 flex flex-col justify-evenly bg-slate-300">
-        <div id="navbar" class="navbar bg-gray-900 text-white text-2xl w-64 h-full fixed top-0 left-[-300px] flex flex-col justify-start items-start p-4 transition duration-300 ease-in-out">
+        <div id="navbar" class="navbar bg-gray-900 text-white text-2xl w-64 h-full fixed top-0 left-[-300px] flex flex-col justify-start items-start p-4 transition-transform duration-3000 ease-in-out">
             <img src="../img/cms-logo.png" alt="">
             <a href="./index.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200 pt-12" id="navFilmes">Filmes</a>
             <a href="./navigation.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200" id="navDiretores">Diretores</a>
@@ -44,16 +44,17 @@
         <div class="w-full h-5/6 flex flex-row justify-center place-items-center">
             <div class="h-full w-4/6 bg-[#25495B] rounded-2xl divide-y overflow-hidden overflow-y-auto"  id="dashboard">
                 <div class="flex flex-row  w-full h-16 rounded-t-lg justify-between">
-                    <div class="flex flex-row  w-4/12">
+                    <div class="flex flex-row  w-6/12 ">
                         <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-evenly">
                             <li>ID</li>
-                            <li>Título</li>
+                            <li>Nome</li>
+                            <li>Nome Artístico</li>
                         </ul>
                     </div>
-                    <div class="flex flex-row  w-5/12">
+                    <div class="flex flex-row  w-6/12">
                         <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-between pr-20">
-                            <li>Destaque</li>
-                            <li>Preço</li>
+                            <li>Nacionalidade</li>
+                            <li>Sexo</li>
                             <li>Ações</li>
                         </ul>
                     </div>

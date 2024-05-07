@@ -1,17 +1,29 @@
-"use strict";
+"use strict"
 
-import {
-    getFilmes,
-    getFilme
-} from "../../filmes.js";
+import { getAtores} from "../../atores.js";
 
-const greeting = document.getElementById('username')
-let username = JSON.parse(localStorage.getItem('user'))
-greeting.textContent = username
-
-async function criarCard(filmes) {
+async function criarCard(atores){
     
-    let idFilme = filmes.id
+    let idAtor = atores.id
+    let sexo
+
+    for (let i = 0; i < atores.sexo.length; i++){
+        const item = atores.sexo[i]
+
+        if(item){
+            sexo = item.sigla
+        }
+    }
+
+    let nacionalidade=[]
+    for (let i = 0; i < atores.nacionalidade.length; i++){
+        const item = atores.nacionalidade[i]
+
+        if(item){
+            nacionalidade.push(item.nome)
+        }
+
+    }
 
     const card = document.createElement("div");
     card.classList.add("flex", "flex-row", "w-full", "h-16", "rounded-t-lg", "justify-between", "card");
@@ -23,26 +35,30 @@ async function criarCard(filmes) {
     innerUl1.classList.add("flex", "flex-row", "w-full", "text-white", "text-2xl", "place-items-center", "truncate", "justify-evenly");
 
     const innerLi1 = document.createElement("li");
-    innerLi1.textContent = idFilme;
+    innerLi1.textContent = idAtor;
 
     const innerLi2 = document.createElement("li");
-    innerLi2.textContent = filmes.nome;
+    innerLi2.textContent = atores.nome;
+
+    const innerLi3 = document.createElement("li");
+    innerLi3.textContent = atores.nome_artistico == null ? '-': atores.nome_artistico
 
     const innerDiv2 = document.createElement("div");
     innerDiv2.classList.add("flex", "flex-row", "w-5/12");
 
     const innerUl2 = document.createElement("ul");
-    innerUl2.classList.add("flex", "flex-row", "w-full", "text-white", "text-2xl", "place-items-center", "justify-between", "pr-12");
+    innerUl2.classList.add("flex", "flex-row", "w-full", "text-white", "text-2xl", "place-items-center", "justify-between", "px-24");
 
-    const innerLi3 = document.createElement("li");
-    innerLi3.textContent = filmes.destaque;
+    const innerLi5 = document.createElement("li")
+    innerLi5.textContent = nacionalidade
 
     const innerLi4 = document.createElement("li");
-    innerLi4.textContent = filmes.valor_unitario.toFixed(2);
+    innerLi4.textContent =  sexo
+    console.log(sexo);
 
     const innerDiv3 = document.createElement("div");
-    innerDiv3.classList.add("flex", "flex-row", "w-28", "justify-between");
-
+    innerDiv3.classList.add("flex", "flex-row", "w-40", "justify-between", "mr-8");
+ 
     const buttonEditar = document.createElement("button");
     buttonEditar.id = "editar_info";
     buttonEditar.type = "button"
@@ -88,22 +104,22 @@ async function criarCard(filmes) {
     buttonDeletar.appendChild(linkDeletar);
     innerDiv3.appendChild(buttonDeletar);
     
-    innerUl1.append(innerLi1, innerLi2)
-    innerUl2.append(innerLi3, innerLi4, innerDiv3);
+    innerUl1.append(innerLi1, innerLi2, innerLi3 )
+    innerUl2.append(innerLi5, innerLi4);
     innerDiv2.appendChild(innerUl2);
     innerDiv1.appendChild(innerUl1);
-    card.append(innerDiv1, innerDiv2);
-    
-    buttonEditar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(idFilme))
+    card.append(innerDiv1, innerDiv2, innerDiv3);
+
+    buttonEditar.addEventListener('click', function () {
+        localStorage.setItem('ator', JSON.stringify(idAtor))
     })
 
-    buttonVerificar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(idFilme))
+    buttonVerificar.addEventListener('click', function () {
+        localStorage.setItem('ator', JSON.stringify(idAtor))
     })
 
-    buttonDeletar.addEventListener('click', function (event) {
-        localStorage.setItem('filme', JSON.stringify(idFilme))
+    buttonDeletar.addEventListener('click', function () {
+        localStorage.setItem('ator', JSON.stringify(idAtor))
     })
 
     return card
@@ -112,10 +128,11 @@ async function criarCard(filmes) {
 async function preencherContainer() {
     const dashboard = document.getElementById('dashboard');
 
-    const filmes = await getFilmes()
+    const atores = await getAtores()
+    console.log(atores);
 
-    filmes.forEach(async filme => {
-        const card = await criarCard(filme)
+    atores.forEach(async ator => {
+        const card = await criarCard(ator)
         dashboard.appendChild(card)
     })
 }
@@ -124,31 +141,28 @@ const input = document.getElementById('busca')
 input.addEventListener('input',async () => {
     const teclado = input.value.toLowerCase();
 
-    const filmes = await getFilmes()
+    const atores = await getAtores()
     
-    for(let i = 0 ; i < filmes.length; i++){
-        const filme = filmes[i]
+    for(let i = 0 ; i < atores.length; i++){
+        const ator = atores[i]
 
-        const filmeTitulo = filme.nome.toLowerCase()
+        const atorNome = ator.nome.toLowerCase()
         
-        if(filmeTitulo.includes(teclado)){
-            showMovie(filme)
+        if(atorNome.includes(teclado)){
+            showAtor(ator)
         }  
-        
-        if (teclado == '' || teclado == null){
-            
-            
-        }
     }
 })
 
-async function showMovie(filme) {
+async function showAtor(ator) {
     const dashboard = document.getElementById('dashboard');
     
-    const card = await criarCard(filme)
+    const card = await criarCard(ator)
 
     dashboard.replaceChildren(card)
 }
+
+
 
 const navbar = document.getElementById('navbar');
 
@@ -159,7 +173,9 @@ document.addEventListener('mousemove', (event) => {
   } else {
     navbar.classList.add("left-[-300px]"); 
   }
-}); 
+});
 
+const navDiretores = document.getElementById('navDiretores')
+const navAtores = document.getElementById('navDiretores')
 
 preencherContainer()

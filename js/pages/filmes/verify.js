@@ -1,7 +1,7 @@
 import { deleteFilme, getFilme } from "../../filmes.js";
-import { getGeneros } from "../../../generos.js";
-import { filmeAtor, getAtores } from "../../../atores.js";
-import { getDiretores, filmeDiretores } from "../../../diretores.js";
+import { getGeneros } from "../../generos.js";
+import { filmeAtor, getAtores } from "../../atores.js";
+import { getDiretores, filmeDiretores } from "../../diretores.js";
 
 const foto_capa = document.getElementById("capa-dropzone-file");
 const foto_fundo = document.getElementById("bg-dropzone-file");

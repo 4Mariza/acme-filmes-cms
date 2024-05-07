@@ -1,9 +1,9 @@
 import { postFilme } from "../../filmes.js"
 import { uploadImgur } from "../../imgur.js";
-import { getGeneros } from "../../../generos.js";
-import { getAtores } from "../../../atores.js";
-import { getDiretores } from "../../../diretores.js";
-import { getClassificacaoPorFaixaEtaria } from "../../../classificacoes.js";
+import { getGeneros } from "../../generos.js";
+import { getAtores } from "../../atores.js";
+import { getDiretores } from "../../diretores.js";
+import { getClassificacoes } from "../../classificacoes.js";
 
 const foto_capa = document.getElementById("capa-dropzone-file")
 const foto_fundo = document.getElementById("bg-dropzone-file")
@@ -248,6 +248,10 @@ async function exibirAtores() {
   }
 }
 
+function getAtoresFromLocalStorage() {
+  const atoresLocalStorage = JSON.parse(localStorage.getItem('atores'));
+  return atoresLocalStorage ? atoresLocalStorage : [];
+}
 
 const adicionarAtorBtn = document.getElementById("adicionarAtor");
 adicionarAtorBtn.addEventListener("click", adicionarCampoAtor);
@@ -275,14 +279,22 @@ async function adicionarCampoAtor() {
   novoCampoAtor.appendChild(personagemAtor)
   atoresContainer.appendChild(novoCampoAtor);
 
-  let atores = JSON.parse(localStorage.getItem('atores'))
   selectAtor.addEventListener('change', function () {
+    let atores = getAtoresFromLocalStorage()
     let jsonAtor = {}
     jsonAtor.personagem = personagemAtor.value
     jsonAtor.id = selectAtor.value
     atores.push(jsonAtor)
     localStorage.setItem('atores', JSON.stringify(atores))
+    
+    console.log(atores);
   })
+  
+}
+
+function getDiretoresFromLocalStorage() {
+  const diretoresLocalStorage = JSON.parse(localStorage.getItem('diretores'));
+  return diretoresLocalStorage ? diretoresLocalStorage : [];
 }
 
 const adicionarDiretorBtn = document.getElementById("adicionarDiretor");
@@ -314,20 +326,28 @@ async function adicionarCampoDiretor() {
   novoCampoDiretor.appendChild(atribuicaoDiretor)
   diretoresContainer.appendChild(novoCampoDiretor);
 
-  let diretores = JSON.parse(localStorage.getItem('diretores'))
-  let jsonDiretor = {}
   selectDiretor.addEventListener('change', function () {
+    let diretores = getDiretoresFromLocalStorage()
+    let jsonDiretor = {}
     jsonDiretor.tipo_direcao = atribuicaoDiretor.value
     jsonDiretor.id = selectDiretor.value
-    console.log(diretores);
     diretores.push(jsonDiretor)
     localStorage.setItem('diretores', JSON.stringify(diretores))
+
+    console.log(diretores);
   })
 }
+
+const cadastrarElencoBtn = document.getElementById('cadastrarElenco')
+cadastrarElencoBtn.addEventListener('click', () => {
+  formularioAdicionar.classList.remove("block");
+  formularioAdicionar.classList.add("hidden");
+})
 
 const cadastrar = document.getElementById("cadastrar_filme")
 
 cadastrar.addEventListener('click', async () => {
+
   let filme = {}
   let urlImg = filme.foto_capa;
   let urlImgBackground = filme.foto_fundo;
@@ -381,7 +401,14 @@ cadastrar.addEventListener('click', async () => {
     }
   });
 
-  let classificacaoID = await getClassificacaoPorFaixaEtaria(classificacao.value)
+  let classificacoes = await getClassificacoes()
+  
+  let classificacaoId
+  for (const item of classificacoes.classificacoes) {
+    if(item.faixa_etaria == classificacao.value){
+      classificacaoId = item.id
+    }
+  }
 
   let atores = JSON.parse(localStorage.getItem('atores'))
 
@@ -411,11 +438,11 @@ cadastrar.addEventListener('click', async () => {
     foto_capa: urlImg,
     foto_fundo: urlImgBackground,
     duracao: duracao.value,
-    data_lancamento: moment(lancamento.value).format("YYYY-MM-DD"),
-    data_relancamento: relancamento ? moment(relancamento.value).format("YYYY-MM-DD") : null,
+    data_lancamento:lancamento.value,
+    data_relancamento: relancamento.value === null ? null : relancamento.value,
     destaque: destaque.checked,
     id_genero: JSON.parse(localStorage.getItem('generos')),
-    id_classificacao: classificacaoID,
+    id_classificacao: classificacaoId,
     atores: arrayAtores,
     diretores: arrayDiretores
   }
@@ -425,7 +452,9 @@ cadastrar.addEventListener('click', async () => {
   let isPosted = await postFilme(filme)
 
   if (isPosted) {
-    localStorage.clear()
+    localStorage.removeItem('atores')
+    localStorage.removeItem('diretores')
+    localStorage.removeItem('generos')
     alert("Filme cadastrado com sucesso!");
   }
  
