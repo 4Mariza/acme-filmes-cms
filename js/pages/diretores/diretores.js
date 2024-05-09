@@ -173,12 +173,12 @@ input.addEventListener("input", async () => {
     const diretorNome = diretor.nome.toLowerCase();
 
     if (diretorNome.includes(teclado)) {
-      showAtor(diretor);
+      showDiretor(diretor);
     }
   }
 });
 
-async function showAtor(diretor) {
+async function showDiretor(diretor) {
   const dashboard = document.getElementById("dashboard");
 
   const card = await criarCard(diretor);

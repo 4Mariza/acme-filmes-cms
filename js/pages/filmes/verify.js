@@ -75,6 +75,7 @@ async function exibirdetalhesFilme(filme) {
     img.src = filme.foto_capa;
     imgBackground.src = filme.foto_fundo;
     duracao.value = moment.utc(filme.duracao).format("HH:mm:ss");
+    
     classificacao.value = filme.classificacao[0].faixa_etaria;
     localStorage.setItem('classificacao_id', JSON.stringify(filme.classificacao[0].id))
 
@@ -197,13 +198,13 @@ async function exibirGeneros() {
 
 let dadosAtores = await filmeAtor(id);
 let atores = dadosAtores.atores;
-let todosAtores = await getAtores();
+
 
 async function exibirAtores() {
   try {
-
+    let todosAtores = await getAtores();
     atores.forEach((ator) => {
-      if (todosAtores.atores.some((actor) => actor.id === ator.id)) {
+      if (todosAtores.some((actor) => actor.id === ator.id)) {
         // Criar div
         const div = document.createElement("div");
         div.classList.add(
@@ -233,7 +234,7 @@ async function exibirAtores() {
         selectAtor.appendChild(inputNomeAtor);
         let atores = []
         
-        todosAtores.atores.forEach((actor) => {
+        todosAtores.forEach((actor) => {
           if (actor.id === ator.id) return
           const option = document.createElement("option");
           option.value = actor.id;
@@ -279,11 +280,12 @@ async function exibirDiretores() {
 
     let dadosDiretores = await filmeDiretores(id);
     let diretores = dadosDiretores.diretores;
+  
 
     diretores.forEach((diretor) => {
 
       if (
-        todosDiretores.diretores.some((director) => director.id == diretor.id)
+        todosDiretores.some((director) => director.id == diretor.id)
       ) {
         // Criar div
         const div = document.createElement("div");
@@ -307,7 +309,7 @@ async function exibirDiretores() {
         selectDiretor.appendChild(inputNomeDiretor);
         let diretores = []
 
-        todosDiretores.diretores.forEach((director) => {
+        todosDiretores.forEach((director) => {
 
           if (director.id === diretor.id) return
           const option = document.createElement("option");
@@ -341,7 +343,7 @@ async function exibirDiretores() {
 
 const adicionarAtorBtn = document.getElementById("adicionarAtor");
 adicionarAtorBtn.addEventListener("click", adicionarCampoAtor);
-function adicionarCampoAtor() {
+async function adicionarCampoAtor() {
   const novoCampoAtor = document.createElement("div");
   novoCampoAtor.classList.add(
     "flex",
@@ -351,9 +353,10 @@ function adicionarCampoAtor() {
     "justify-evenly"
   );
 
-  
+  let todosAtores = await getAtores();  
+
   const selectAtor = document.createElement("select");
-  todosAtores.atores.forEach(actor => {
+  todosAtores.forEach(actor => {
     const option = document.createElement("option");
     option.value = actor.id;
     option.textContent = actor.nome;
@@ -394,7 +397,7 @@ async function adicionarCampoDiretor() {
   );
 
   const selectDiretor = document.createElement("select");
-  todosDiretores.diretores.forEach(director => {
+  todosDiretores.forEach(director => {
     const option = document.createElement("option");
     option.value = director.id;
     option.textContent = director.nome;
@@ -427,42 +430,39 @@ atualizarElencoBtn.addEventListener('click', () => {
 })
 exibirInformacoes();
 
-let fileImg
-fileImg = foto_capa.files[0];
 
 let foto
-let file = foto_capa.files[0];
+foto_capa.addEventListener("change", () => {
+  let file = foto_capa.files[0];
 
-if (file) {
-  const reader = new FileReader();
+  if (file) {
+    const reader = new FileReader();
 
-  reader.addEventListener("load", (e) => {
-    const render = e.target;
-    const img = document.getElementById("foto");
-    foto = render.result;
-    img.src = foto;
-  });
-  reader.readAsDataURL(file);
-}
+    reader.addEventListener("load", (e) => {
+      const render = e.target;
+      foto = render.result;
+      img.src = foto;
+    });
+    reader.readAsDataURL(file);
+  }
+});
 
-let fileImgBackground;
 
-fileImgBackground = foto_fundo.files[0];
+let foto_bg
+foto_fundo.addEventListener("change", () => {
+  let file = foto_fundo.files[0];
 
-let fotoBg;
-let fileBg = foto_fundo.files[0];
+  if (file) {
+    const reader = new FileReader();
 
-if (fileBg) {
-  const reader = new FileReader();
-
-  reader.addEventListener("load", (e) => {
-    const render = e.target;
-    const img = document.getElementById("foto-bg");
-    foto = render.result;
-    img.src = fotoBg;
-  });
-  reader.readAsDataURL(file);
-}
+    reader.addEventListener("load", (e) => {
+      const render = e.target;
+      foto_bg = render.result;
+      imgBackground.src = foto_bg;
+    });
+    reader.readAsDataURL(file);
+  }
+});
 
 
 deletar.addEventListener("click", async () => {

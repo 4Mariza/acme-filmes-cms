@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../js/pages/generos/generos.js" defer></script>
+    <link rel="stylesheet" href="../css/global.css">
+    <title>CMS - ACME FILMES</title>
+</head>
+<body class="w-screen h-screen overflow-auto no-scrollbar">
+    <header class="w-full h-40 bg-[#176596] flex flex-row justify-between px-10 place-items-center">
+        <img src="../img/cms-logo.png" alt="">
+        <h1 class="text-white text-3xl">Dashboard</h1>
+    </header>
+    <main class="w-full h-5/6 flex flex-col justify-evenly bg-slate-300">
+        <div id="navbar" class="navbar bg-gray-900 text-white text-2xl w-64 h-full fixed top-0 left-[-300px] flex flex-col justify-start items-start p-4 transition-transform duration-3000 ease-in-out">
+            <img src="../img/cms-logo.png" alt="">
+            <a href="./index.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200 pt-12" id="navFilmes">Filmes</a>
+            <a href="./diretores.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200" id="navDiretores">Diretores</a>
+            <a href="./atores.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200" id="navAtores">Atores</a>
+            <a href="./generos.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200" id="navGeneros">Gêneros</a>
+            <a href="./classificacoes.html" class="menu-item py-2 px-4 w-full text-left hover:text-blue-200" id="navClassificacoes">Classificações</a>
+        </div>
+          
+        <div class="h-20 w-10/12 flex flex-row justify-around place-self-center">
+            <div class="w-96 flex flex-row bg-[#176596] place-items-center justify-evenly rounded-2xl">
+                <p class="text-white text-2xl">Buscar:</p>
+                <input class="w-2/3 h-1/3 rounded-lg enabled:outline-none" type="text" name="busca" id="busca">
+            </div>
+            <div class="w-4/12 flex flex-row justify-evenly place-items-center">
+                <button class="w-1/3 h-full bg-[#176596] flex flex-row place-items-center justify-evenly  rounded-2xl text-white text-2xl hover:bg-cyan-600" type="button">
+                    <img src="../img/filter.svg" alt="">
+                    Filtrar
+                    <img src="../img/arrow-down.svg" alt="">
+                </button>
+                <a href="./cadastrar_genero.html" class="w-1/3 h-full bg-[#176596] flex flex-row place-items-center justify-evenly  rounded-2xl text-white text-2xl hover:bg-cyan-600" type="button">
+                    <img src="../img/plus.svg" alt="">
+                    Adicionar
+                </a>
+            </div>
+        </div>
+        <div class="w-full h-5/6 flex flex-row justify-center place-items-center">
+            <div class="h-full w-4/6 bg-[#25495B] rounded-2xl divide-y overflow-hidden overflow-y-auto"  id="dashboard">
+                <div class="flex flex-row  w-full h-16 rounded-t-lg justify-between">
+                    <div class="flex flex-row  w-6/12 ">
+                        <ul class="flex flex-row w-full text-white text-2xl place-items-center justify-evenly">
+                            <li>ID</li>
+                            <li>Nome</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-row w-full justify-end">
+                        <ul class="flex flex-row w-4/12 text-white text-2xl justify-end place-items-center pr-20">
+                            <li>Ações</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

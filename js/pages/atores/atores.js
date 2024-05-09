@@ -80,7 +80,6 @@ async function criarCard(atores) {
 
   const innerLi4 = document.createElement("li");
   innerLi4.textContent = sexo;
-  console.log(sexo);
 
   const innerDiv3 = document.createElement("div");
   innerDiv3.classList.add(
@@ -206,7 +205,6 @@ async function preencherContainer() {
   const dashboard = document.getElementById("dashboard");
 
   const atores = await getAtores();
-  console.log(atores);
 
   atores.forEach(async (ator) => {
     const card = await criarCard(ator);

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../js/pages/generos/verify.js" defer></script>
+    <script type="module" src="../js/pages/generos/delete.js" defer></script>
+    <link rel="stylesheet" href="../css/global.css">
+    <title>CMS - ACME FILMES</title>
+</head>
+
+<body class="w-screen h-screen bg-slate-300 overflow-auto no-scrollbar">
+    <header class="w-full h-40 bg-[#176596] flex flex-row justify-between px-10 place-items-center">
+        <img src="../img/cms-logo.png" alt="logo Acme Filmes CMS">
+        <h1 class="text-white text-3xl">Visualizar</h1>
+    </header>
+    <main class="w-full h-4/6 flex flex-col justify-between">
+        <div class="w-full h-32 pl-12 pt-6">
+            <a href="./generos.html">
+                <img src="../img/voltar.svg" alt="seta voltar">
+            </a>
+        </div>
+        <div class="container h-full mx-auto flex flex-col justify-center">
+            <div class="w-10/12 h-full mx-auto rounded-md">
+                <div class="w-full h-full grid grid-cols-3 gap-6 p-6">
+            
+                    <div class="col-span-1 h-[180px] w-[340px] flex flex-col justify-evenly">
+                        <div class="h-2/5 ">
+                            <input type="text" id="nome" name="nome" placeholder="Nome"
+                                class=" h-full enabled:outline-none w-full text-2xl text-white rounded-xl bg-[#176596] pl-6">
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </main>
+    <footer class="h-1/6 w-full flex justify-start place-items-center">
+        <div class="w-2/5 h-2/4 flex flex-row justify-end  gap-20">
+            <button
+                class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-red-500 text-2xl text-gray-300 hover:bg-red-600"
+                id="deletar_genero">
+                <img src="../img/delete-button.png" alt="botão de deletar">
+                Excluir
+            </button>
+            <button
+                class="w-1/5 h-full flex flex-row justify-evenly place-items-center rounded-full bg-[#176596] text-2xl text-gray-300 hover:bg-blue-800"
+                id="editar_genero">
+                <img src="../img/edit-button.png" alt="botão de confirmar edição">
+                Editar
+            </button>
+        </div>
+    </footer>
+</body>
+
+</html>

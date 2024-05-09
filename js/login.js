@@ -6,7 +6,6 @@ const password = document.getElementById('password');
 const loginButton = document.getElementById('login')
 
 const verifyUser = async () => {
-  console.log('oi');
 
   let usuarios = await getUsuarios()
 
@@ -14,8 +13,6 @@ const verifyUser = async () => {
     if(email.value == user.login && password.value == user.senha){
   
       alert('Usuário logado com sucesso!')
-
-      localStorage.setItem('user', JSON.stringify(user.nome))
 
       window.location.href='../html/index.html'
     }

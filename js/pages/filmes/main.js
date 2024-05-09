@@ -130,11 +130,6 @@ input.addEventListener('input',async () => {
         if(filmeTitulo.includes(teclado)){
             showMovie(filme)
         }  
-        
-        if (teclado == '' || teclado == null){
-            
-            
-        }
     }
 })
 

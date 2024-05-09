@@ -1,5 +1,6 @@
 import { putFilme, getFilme } from "../../filmes.js";
 import { uploadImgur } from "../../imgur.js";
+import {getClassificacoes} from "../../classificacoes.js"
 
 const foto_capa = document.getElementById("capa-dropzone-file");
 const foto_fundo = document.getElementById("bg-dropzone-file");
@@ -11,7 +12,7 @@ const data_relancamento = document.getElementById("data_relancamento");
 const duracao = document.getElementById("duration");
 const sinopse = document.getElementById("sinopse");
 const destaque = document.getElementById("destaque");
-
+const classificacao = document.getElementById("classificacao")
 
 let id = JSON.parse(localStorage.getItem("filme"));
 
@@ -78,7 +79,16 @@ editar.addEventListener("click", async () => {
   const lancamentoAlterado = moment(data_lancamento.value).format("YYYY-MM-DD");
   const destaqueAlterado = destaque.checked;
   const generos = JSON.parse(localStorage.getItem('generos'))
-  const classificacaoAlterada = JSON.parse(localStorage.getItem('classificacao_id'))
+  let classificacaoAlterada = 1
+
+  let classificacoes = await getClassificacoes()
+  for (let i = 0; i < classificacoes.length; i++){
+    let classificacaoDB = classificacoes[i]
+    if(classificacaoDB.faixa_etaria == classificacao.value){
+       classificacaoAlterada = classificacaoDB.id
+    }
+  }
+
   const relancamentoAlterado =
     //expressão condicional - usada para atribuir um valor a uma variável com base em uma condição.
     filme.data_relancamento === null
