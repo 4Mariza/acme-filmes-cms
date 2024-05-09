@@ -452,9 +452,7 @@ cadastrar.addEventListener('click', async () => {
   let isPosted = await postFilme(filme)
 
   if (isPosted) {
-    localStorage.removeItem('atores')
-    localStorage.removeItem('diretores')
-    localStorage.removeItem('generos')
+    localStorage.clear()
     alert("Filme cadastrado com sucesso!");
   }
  

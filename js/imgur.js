@@ -13,7 +13,7 @@ export async function  uploadImgur(file) {
 
     const response = await fetch(url, options)
     const imagem = await response.json()
-    console.log (imagem.data)
+
     return imagem.data.link
 
 }

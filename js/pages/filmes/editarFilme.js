@@ -96,7 +96,6 @@ editar.addEventListener("click", async () => {
     arrayAtores.push(json)
   });
 
-
   let diretores = JSON.parse(localStorage.getItem('diretores'))
 
   let arrayDiretores = []
@@ -129,9 +128,7 @@ editar.addEventListener("click", async () => {
   let isEdited = await putFilme(filmeAlterado);
 
   if (isEdited) {
-    localStorage.removeItem('atores')
-    localStorage.removeItem('diretores')
-    localStorage.removeItem('generos')
+    localStorage.clear()
     alert("Filme editado com sucesso!");
   }
 });
