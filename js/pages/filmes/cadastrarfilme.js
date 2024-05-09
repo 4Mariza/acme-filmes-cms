@@ -191,57 +191,72 @@ const diretoresContainer = document.getElementById("diretoresContainer");
 async function exibirAtores() {
   try {
     let todosAtores = await getAtores();
+    atores.forEach((ator) => {
+      if (todosAtores.some((actor) => actor.id === ator.id)) {
+        // Criar div
+        const div = document.createElement("div");
+        div.classList.add(
+          "flex",
+          "flex-row",
+          "w-full",
+          "h-3/5",
+          "justify-evenly"
+        );
 
-    todosAtores.forEach((ator) => {
+        // Criar input para o nome do ator
+        const selectAtor = document.createElement("select");
+        const inputNomeAtor = document.createElement("option");
 
-      // Criar div
-      const div = document.createElement("div");
-      div.classList.add(
-        "flex",
-        "flex-row",
-        "w-full",
-        "h-3/5",
-        "justify-evenly"
-      );
+        inputNomeAtor.classList.add(
+          "nomeAtor",
+          "p-2",
+          "border",
+          "border-gray-300",
+          "rounded-md",
+          "h-full"
+        );
 
-      // Criar input para o nome do ator
-      const selectAtor = document.createElement("select");
-      const inputNomeAtor = document.createElement("option");
+        inputNomeAtor.value = ator.id;
+        inputNomeAtor.textContent = ator.nome
 
-      inputNomeAtor.classList.add(
-        "nomeAtor",
-        "p-2",
-        "border",
-        "border-gray-300",
-        "rounded-md",
-        "h-full"
-      );
-
-      inputNomeAtor.value = ator.id;
-      inputNomeAtor.textContent = ator.nome
-
-      selectAtor.appendChild(inputNomeAtor);
-
-      // Criar input para o personagem do ator
-      const inputPersonagemAtor = document.createElement("input");
-      inputPersonagemAtor.type = "text";
-      inputPersonagemAtor.classList.add(
-        "personagemAtor",
-        "p-2",
-        "border",
-        "border-gray-300",
-        "rounded-md",
-        "h-full"
-      );
-      inputPersonagemAtor.placeholder = "Personagem";
-      inputPersonagemAtor.required = true;
-
-
-      div.appendChild(inputPersonagemAtor);
-
-      // Adicionar div ao elemento pai
-      atoresContainer.appendChild(div);
-    });
+        selectAtor.appendChild(inputNomeAtor);
+        let atores = []
+        
+        todosAtores.forEach((actor) => {
+          if (actor.id === ator.id) return
+          const option = document.createElement("option");
+          option.value = actor.id;
+          option.textContent = actor.nome;
+          atores.push(option.value)
+          selectAtor.appendChild(option);
+        });
+        div.appendChild(selectAtor)
+        
+        // Criar input para o personagem do ator
+        const inputPersonagemAtor = document.createElement("input");
+        inputPersonagemAtor.type = "text";
+        inputPersonagemAtor.classList.add(
+          "personagemAtor",
+          "p-2",
+          "border",
+          "border-gray-300",
+          "rounded-md",
+          "h-full"
+          );
+          inputPersonagemAtor.placeholder = "Personagem";
+          inputPersonagemAtor.required = true;
+          inputPersonagemAtor.value = ator.personagem;
+          
+          // Adicionar inputs à div
+          //div.appendChild(inputNomeAtor);
+          div.appendChild(inputPersonagemAtor);
+          
+          // Adicionar div ao elemento pai
+          atoresContainer.appendChild(div);
+        }
+      });
+      
+      localStorage.setItem('atores', JSON.stringify(atores))
 
   } catch (error) {
     return error
@@ -265,13 +280,15 @@ async function adicionarCampoAtor() {
     "h-3/5",
     "justify-evenly"
   );
+
   const selectAtor = document.createElement("select");
-  todosAtores.atores.forEach(actor => {
+  todosAtores.forEach(actor => {
     const option = document.createElement("option");
     option.value = actor.id;
     option.textContent = actor.nome;
     selectAtor.appendChild(option);
   })
+
   const personagemAtor = document.createElement("input");
   personagemAtor.classList.add("personagemAtor", "p-2", "border", "border-gray-300", "rounded-md", "h-full")
   personagemAtor.placeholder = "Personagem"
@@ -290,6 +307,73 @@ async function adicionarCampoAtor() {
     console.log(atores);
   })
   
+}
+
+async function exibirDiretores() {
+  try {
+    let todosDiretores = await getDiretores();
+
+    let dadosDiretores = await filmeDiretores(id);
+    let diretores = dadosDiretores.diretores;
+  
+
+    diretores.forEach((diretor) => {
+
+      if (
+        todosDiretores.some((director) => director.id == diretor.id)
+      ) {
+        // Criar div
+        const div = document.createElement("div");
+        div.classList.add("flex", "flex-row", "w-full", "h-3/5", "justify-evenly");
+
+        // // Criar input para o nome do diretor
+        const selectDiretor = document.createElement("select");
+        const inputNomeDiretor = document.createElement("option");
+        inputNomeDiretor.classList.add(
+          "nomeAtor",
+          "p-2",
+          "border",
+          "border-gray-300",
+          "rounded-md",
+          "h-full"
+        );
+
+        inputNomeDiretor.value = diretor.id;
+        inputNomeDiretor.textContent = diretor.nome
+
+        selectDiretor.appendChild(inputNomeDiretor);
+        let diretores = []
+
+        todosDiretores.forEach((director) => {
+
+          if (director.id === diretor.id) return
+          const option = document.createElement("option");
+          option.value = director.id;
+          option.textContent = director.nome;
+          diretores.push(option.value)
+          selectDiretor.appendChild(option);
+        });
+        div.appendChild(selectDiretor)
+
+        // // Criar input para a contribuição do diretor
+        const inputContribuicaoDiretor = document.createElement("input");
+        inputContribuicaoDiretor.type = "text";
+        inputContribuicaoDiretor.classList.add("contribuicaoDiretor", "p-2", "border", "border-gray-300", "rounded-md", "h-full");
+        inputContribuicaoDiretor.placeholder = "Atribuição";
+        inputContribuicaoDiretor.required = true;
+        inputContribuicaoDiretor.value = diretor.tipo_direcao
+
+        // // Adicionar inputs à div
+        div.appendChild(inputContribuicaoDiretor);
+
+        // // Adicionar div ao elemento pai
+        diretoresContainer.appendChild(div);
+      }
+    });
+    localStorage.setItem('diretores', JSON.stringify(diretores))
+  } catch (error) {
+    return error
+  }
 }
 
 function getDiretoresFromLocalStorage() {
@@ -312,7 +396,7 @@ async function adicionarCampoDiretor() {
   );
 
   const selectDiretor = document.createElement("select");
-  todosDiretores.diretores.forEach(director => {
+  todosDiretores.forEach(director => {
     const option = document.createElement("option");
     option.value = director.id;
     option.textContent = director.nome;
@@ -404,7 +488,7 @@ cadastrar.addEventListener('click', async () => {
   let classificacoes = await getClassificacoes()
   
   let classificacaoId
-  for (const item of classificacoes.classificacoes) {
+  for (const item of classificacoes) {
     if(item.faixa_etaria == classificacao.value){
       classificacaoId = item.id
     }
@@ -451,9 +535,15 @@ cadastrar.addEventListener('click', async () => {
   
   let isPosted = await postFilme(filme)
 
-  if (isPosted) {
+  try {
+    if (isPosted) {
+      localStorage.clear()
+      alert("Filme cadastrado com sucesso!");
+    } 
+   
+  } catch (error) {
     localStorage.clear()
-    alert("Filme cadastrado com sucesso!");
+    alert(`ERRO: ${error}`)
   }
  
 
